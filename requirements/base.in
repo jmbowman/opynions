@@ -1,4 +1,4 @@
 # Core requirements for using this application
+-c constraints.txt
 
-Django                    # Web application framework
-
+pytest                    # Framework used to find and execute each "opynion"

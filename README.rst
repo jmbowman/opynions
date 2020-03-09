@@ -1,22 +1,41 @@
 opynions
-=============================
+========
 
 |pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
-The ``README.rst`` file should start with a brief description of the repository,
-which sets it in the context of other repositories under the ``edx``
-organization. It should make clear where this fits in to the overall edX
-codebase.
+Opynions inspects a code repository and warns the user if that repository
+deviates from a selected set of opinions on how it should be organized.  It's
+a good complement for a `cookiecutter`_; the cookiecutter provides a good
+template for starting a repository with current best practices, and opynions
+helps it keep up with those practices as they evolve over time.
 
-Enforce selected packaging guidelines
+Overview
+--------
 
-Overview (please modify)
-------------------------
+Opynions is effectively a static code analysis tool for the structure of a
+software repository itself, rather than the source code within it.  It lets
+the user select a set of opinions they (or their organization) agree with
+about how a repository should be configured and what tools it should use.
+Such options could include:
 
-The ``README.rst`` file should then provide an overview of the code in this
-repository, including the main components and useful entry points for starting
-to understand the code in more detail.
+* pytest should be used as the test runner
+* tox should be used to check compatibility with all supported Python versions
+* Documentation should be built with Sphinx and hosted on Read the Docs
+* pip-tools should be used to management requirements files, and there should
+  be a few such files with standard names and roles
+* pipenv should be used to manage requirements files and virtualenvs
+
+The sets of opinions to enforce (and individual opinions within those sets to
+ignore) are configured in an ``[opynions]`` section in ``setup.cfg``.  Each
+individual opinion is a pytest test case, and each set of opinions is a
+module of such test cases.  Common operations such as parsing configuration
+files are handled by pytest fixtures, so individual opinion implementations
+tend to be very concise:
+
+* Is there a ``tox.ini`` file?
+* Does it contain a ``[tox]`` section?
+* Does the ``[tox]`` section contain ann
 
 Documentation
 -------------
@@ -41,10 +60,10 @@ Please read `How To Contribute <https://github.com/edx/edx-platform/blob/master/
 Even though they were written with ``edx-platform`` in mind, the guidelines
 should be followed for Open edX code in general.
 
-PR description template should be automatically applied if you are sending PR from github interface; otherwise you
+The pull request description template should be automatically applied if you are creating a pull request from GitHub.  Otherwise you
 can find it it at `PULL_REQUEST_TEMPLATE.md <https://github.com/edx/opynions/blob/master/.github/PULL_REQUEST_TEMPLATE.md>`_
 
-Issue report template should be automatically applied if you are sending it from github UI as well; otherwise you
+The issue report template should be automatically applied if you are creating an issue on GitHub as well.  Otherwise you
 can find it at `ISSUE_TEMPLATE.md <https://github.com/edx/opynions/blob/master/.github/ISSUE_TEMPLATE.md>`_
 
 Reporting Security Issues
@@ -58,6 +77,7 @@ Getting Help
 Have a question about this repository, or about Open edX in general?  Please
 refer to this `list of resources`_ if you need any assistance.
 
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _list of resources: https://open.edx.org/getting-help
 
 

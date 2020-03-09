@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# pylint: disable=C0111,W6005,W6100
-from __future__ import absolute_import, print_function
-
+"""
+Package metadata for opynions.
+"""
 import os
 import re
 import sys
@@ -21,6 +21,32 @@ def get_version(*file_paths):
     if version_match:
         return version_match.group(1)
     raise RuntimeError('Unable to find version string.')
+
+
+def load_requirements(*requirements_paths):
+    """
+    Load all requirements from the specified requirements files.
+
+    Returns:
+        list: Requirements file relative path strings
+    """
+    requirements = set()
+    for path in requirements_paths:
+        requirements.update(
+            line.split('#')[0].strip() for line in open(path).readlines()
+            if is_requirement(line.strip())
+        )
+    return list(requirements)
+
+
+def is_requirement(line):
+    """
+    Return True if the requirement line is a package requirement.
+
+    Returns:
+        bool: True if the line is not blank, a comment, a URL, or an included file
+    """
+    return line and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 
 VERSION = get_version('opynions', '__init__.py')
@@ -46,24 +72,20 @@ setup(
         'opynions',
     ],
     include_package_data=True,
-    install_requires=[
-        "Django>=1.8,<2.1"
-    ],
+    install_requires=load_requirements('requirements/base.in'),
+    python_requires=">=3.5",
     license="Apache Software License 2.0",
     zip_safe=False,
     keywords='Django edx',
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Framework :: Django',
-        'Framework :: Django :: 1.8',
-        'Framework :: Django :: 1.11',
-        'Framework :: Django :: 2.0',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 )

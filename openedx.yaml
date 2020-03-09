@@ -1,7 +1,9 @@
 # openedx.yaml
 
 ---
-owner: edx/testeng
+owner:
+    type: team
+    team: edx/arch-bom
 nick: opynions
 tags:
     - tools
@@ -9,7 +11,11 @@ oeps:
     oep-2: True
     oep-3:
         state: False
-        reason: TODO - Implement for this application if appropriate
+        reason: No asynchronous tasks needed
     oep-5:
         state: False
         reason: TODO - Implement for this application if appropriate
+    oep-7: True
+    oep-30:
+        state: False
+        reason: Doesn't handle any user information

@@ -13,18 +13,12 @@ All configuration values have a default; values that are commented out
 serve to show the default.
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import os
 import re
 import sys
 from subprocess import check_call
 
 import edx_theme
-
-import django
-from django.conf import settings
-from django.utils import six
 
 
 def get_version(*file_paths):
@@ -43,10 +37,6 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(REPO_ROOT)
 
 VERSION = get_version('../opynions', '__init__.py')
-
-# Configure Django for autodoc usage
-settings.configure()
-django.setup()
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -476,9 +466,7 @@ epub_exclude_files = ['search.html']
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3.6', None),
-    'django': ('https://docs.djangoproject.com/en/1.11/', 'https://docs.djangoproject.com/en/1.11/_objects/'),
-    'model_utils': ('https://django-model-utils.readthedocs.io/en/latest/', None),
+    'python': ('https://docs.python.org/3.8', None),
 }
 
 
@@ -496,11 +484,10 @@ def on_init(app):  # pylint: disable=unused-argument
         # If we are, assemble the path manually
         bin_path = os.path.abspath(os.path.join(sys.prefix, 'bin'))
         apidoc_path = os.path.join(bin_path, apidoc_path)
-    check_call([apidoc_path, '-o', docs_path, os.path.join(root_path, 'opynions'),
-                os.path.join(root_path, 'opynions/migrations')])
+    check_call([apidoc_path, '-o', docs_path, os.path.join(root_path, 'opynions')])
 
 
 def setup(app):
     """Sphinx extension: run sphinx-apidoc."""
-    event = 'builder-inited' if six.PY3 else b'builder-inited'
+    event = 'builder-inited'
     app.connect(event, on_init)
