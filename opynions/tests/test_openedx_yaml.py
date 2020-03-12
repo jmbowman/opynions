@@ -22,7 +22,10 @@ def test_owner(get_openedx_yaml, results_bag):
     openedx_file = get_openedx_yaml
     regex_patter = "(?<=owner: )'.*'"
     m = re.search(regex_patter, openedx_file)
+    results_bag.has_owner = False
     assert m is not None
+    results_bag.has_owner = True
+
     owner = m.group(0).replace("'","")
     results_bag.owner = owner
 
@@ -32,6 +35,8 @@ def test_nick(get_openedx_yaml, results_bag):
     openedx_file = get_openedx_yaml
     regex_patter = "(?<=nick: ).*\n"
     m = re.search(regex_patter, openedx_file)
+    results_bag.has_nick = False
     assert m is not None
+    results_bag.has_owner = True
     nick = m.group(0).replace("\n","")
     results_bag.owner = nick
