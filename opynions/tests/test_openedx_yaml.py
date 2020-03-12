@@ -18,6 +18,8 @@ def get_openedx_yaml():
     return get_file_content('openedx.yaml')
 
 def test_owner(get_openedx_yaml, results_bag):
+    """ Test if owner line exists and get owner name """
+    #TODO(jinder): decide how flexible do we want to be with this, the code below is unforgiving
     openedx_file = get_openedx_yaml
     regex_patter = "(?<=owner: )'.*'"
     m = re.search(regex_patter, openedx_file)
@@ -26,6 +28,8 @@ def test_owner(get_openedx_yaml, results_bag):
     results_bag.owner = owner
 
 def test_nick(get_openedx_yaml, results_bag):
+    """ Test if nick line exists and get nick """
+    #TODO(jinder): decide how flexible do we want to be with this, the code below is unforgiving
     openedx_file = get_openedx_yaml
     regex_patter = "(?<=nick: ).*\n"
     m = re.search(regex_patter, openedx_file)
