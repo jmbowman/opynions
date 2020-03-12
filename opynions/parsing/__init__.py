@@ -1,7 +1,7 @@
 import codecs
 import os
 from configparser import ConfigParser
-from pathlib import path
+from pathlib import Path
 
 
 def parse_config_file(path):
