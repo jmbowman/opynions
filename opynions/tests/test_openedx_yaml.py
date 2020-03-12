@@ -8,7 +8,6 @@ from configparser import ConfigParser
 from opynions.parsing import get_file_content
 
 import pytest
-import pdb
 
 full_data = {}
 
@@ -23,6 +22,5 @@ def add_data(data):
 
 def test_something(get_openedx_yaml, results_bag):
     openedx_file = get_openedx_yaml
-    # pdb.set_trace()
-    results_bag.what_up = "hahahha"
+    results_bag.test_value = "hahahha"
     assert 1 == 1
