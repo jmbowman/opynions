@@ -1,7 +1,6 @@
 import pytest
 from pytest_harvest import get_session_results_dct, get_fixture_store
 import pprint
-import pdb
 
 pp = pprint.PrettyPrinter(indent=4)
 

@@ -9,7 +9,6 @@ from opynions.parsing import get_file_content
 import re
 
 import pytest
-import pdb
 
 
 @pytest.fixture(scope='module')
