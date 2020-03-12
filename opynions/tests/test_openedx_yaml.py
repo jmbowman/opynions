@@ -9,16 +9,11 @@ from opynions.parsing import get_file_content
 
 import pytest
 
-full_data = {}
 
 @pytest.fixture(scope='module')
 def get_openedx_yaml():
     """Fixture containing the text content of setup.py"""
     return get_file_content('openedx.yaml')
-
-def add_data(data):
-    full_data.append(data)
-
 
 def test_something(get_openedx_yaml, results_bag):
     openedx_file = get_openedx_yaml
