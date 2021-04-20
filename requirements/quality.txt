@@ -4,33 +4,89 @@
 #
 #    make upgrade
 #
-astroid==2.3.3            # via pylint, pylint-celery
+astroid==2.3.3
+    # via
+    #   pylint
+    #   pylint-celery
 attrs==19.3.0
-click-log==0.3.2          # via edx-lint
-click==7.0                # via click-log, edx-lint
+    # via
+    #   -r test.txt
+    #   pytest
+click-log==0.3.2
+    # via edx-lint
+click==7.0
+    # via
+    #   click-log
+    #   edx-lint
 coverage==5.0.2
+    # via
+    #   -r test.txt
+    #   pytest-cov
 edx-lint==1.4.1
-importlib-metadata==1.3.0
+    # via -r quality.in
 isort==4.3.21
-lazy-object-proxy==1.4.3  # via astroid
-mccabe==0.6.1             # via pylint
+    # via
+    #   -r quality.in
+    #   pylint
+lazy-object-proxy==1.4.3
+    # via astroid
+mccabe==0.6.1
+    # via pylint
 more-itertools==8.0.2
+    # via
+    #   -r test.txt
+    #   pytest
 packaging==20.0
-pathlib2==2.3.5
+    # via
+    #   -r test.txt
+    #   pytest
 pluggy==0.13.1
-py==1.8.1
+    # via
+    #   -r test.txt
+    #   pytest
+py==1.10.0
+    # via
+    #   -r test.txt
+    #   pytest
 pycodestyle==2.5.0
+    # via -r quality.in
 pydocstyle==5.0.1
-pylint-celery==0.3        # via edx-lint
-pylint-django==2.0.11     # via edx-lint
-pylint-plugin-utils==0.6  # via pylint-celery, pylint-django
-pylint==2.4.2             # via edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
+    # via -r quality.in
+pylint-celery==0.3
+    # via edx-lint
+pylint-django==2.0.11
+    # via edx-lint
+pylint-plugin-utils==0.6
+    # via
+    #   pylint-celery
+    #   pylint-django
+pylint==2.4.2
+    # via
+    #   edx-lint
+    #   pylint-celery
+    #   pylint-django
+    #   pylint-plugin-utils
 pyparsing==2.4.6
+    # via
+    #   -r test.txt
+    #   packaging
 pytest-cov==2.8.1
+    # via -r test.txt
 pytest==5.3.2
+    # via
+    #   -r test.txt
+    #   pytest-cov
 six==1.13.0
-snowballstemmer==2.0.0    # via pydocstyle
-typed-ast==1.4.0          # via astroid
+    # via
+    #   -r test.txt
+    #   astroid
+    #   edx-lint
+    #   packaging
+snowballstemmer==2.0.0
+    # via pydocstyle
 wcwidth==0.1.8
-wrapt==1.11.2             # via astroid
-zipp==0.6.0
+    # via
+    #   -r test.txt
+    #   pytest
+wrapt==1.11.2
+    # via astroid
